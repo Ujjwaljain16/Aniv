@@ -1,0 +1,625 @@
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>One Year</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Nothing+You+Could+Do&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!-- Background Layer (Independent for blur effects) -->
+    <div id="bg-layer"></div>
+
+    <!-- Micro-presence Grain (Overlay) -->
+    <div id="grain-overlay"></div>
+
+    <!-- DISABLED: Old final memory overlay - now using final-section.js -->
+    <!-- <div id="final-memory" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 4s ease; background: black url('./kiss.jpg') no-repeat center center; background-size: cover; filter: grayscale(100%) brightness(0.8);">
+        Optional: Vignette overlay built-in or via CSS
+    </div> -->
+
+    <!-- Gateway (Login) -->
+    <section id="gateway" class="section active" style="z-index: 50;">
+      <div class="glass" style="width: 300px; padding: 3rem 2rem;">
+        <input type="password" id="password-input" placeholder="..." autocomplete="off" spellcheck="false">
+        <div style="height: 1.5rem;"></div>
+        <p class="small-text" style="opacity: 0.7; font-weight: 400; letter-spacing: 0.05em;">Not everything beautiful needs to be public.</p>
+        <p id="error-msg" class="small-text" style="opacity: 0; color: var(--privacy-teal); margin-top: 1rem; transition: opacity 2s ease, color 2s ease;">It’s not something new.</p>
+      </div>
+    </section>
+
+    <!-- Arrival Page (Warm Neutral) -->
+    <section id="arrival" class="section" style="z-index: 40; opacity: 0; pointer-events: none; background: rgba(23, 23, 35, 0.6); backdrop-filter: blur(10px);">
+        <!-- We use a subtle dark overlay to modify the indigo gradient into a warmer/darker space, or just use typography on existing bg. 
+             User asked for 'Warm neutral' background. Integrating full solid bg might be too harsh against the gradient.
+             Let's use the glassmorphism but styled for Arrival. -->
+        <div style="max-width: 400px; padding: 20px;">
+            <div class="serif-text reveal-delay-1">Hellooo meri pyaariii pihuuu♥️</div>
+            <div style="height: 1.5rem;"></div>
+            <div class="serif-text reveal-delay-2">Happiest one year to us mere pholluu🌻</div>
+            <div style="height: 0.5rem;"></div>
+            <div class="serif-text reveal-delay-3">So so before anything else ,<br>I just want you here with me for a moment my love .</div>
+            
+            <div style="height: 3rem;"></div>
+            
+            <button id="btn-come-in" class="btn-come-in reveal-delay-btn">Come in</button>
+        </div>
+    </section>
+
+    <!-- Pause Room (Silence) -->
+    <section id="pause-room" class="section" style="z-index: 30; opacity: 0; pointer-events: none;">
+        <!-- Sound Toggle (Visual Only for now) -->
+        <div id="sound-toggle" style="position: absolute; top: 40px; right: 40px; opacity: 0.3; cursor: pointer; transition: opacity 0.5s;">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+             </svg>
+        </div>
+
+        <div style="max-width: 500px; padding: 20px; margin-top: 10vh;">
+             <!-- Sequence start -->
+             <div class="serif-text" style="animation-delay: 0.5s;">Pihuuu...</div>
+             
+             <div style="height: 1.5rem;"></div>
+
+             <div class="serif-text" style="animation-delay: 3.5s;">Before we talk about us,<br>before memories, before anything else</div>
+             
+             <div style="height: 1.5rem;"></div>
+
+             <div class="serif-text" style="animation-delay: 6.5s;">I just want you to remember one thing.</div>
+
+             <div style="height: 2rem;"></div>
+
+             <div class="serif-text" style="animation-delay: 9.5s;">You never had to be perfect for me.<br>You just had to be you.<br>And you always were.</div>
+             
+             <div style="height: 4rem;"></div>
+             
+             <!-- Okay Button -->
+             <button id="btn-okay" class="btn-come-in" style="animation-delay: 11.5s; border-width: 1px; padding: 0.8rem 2.5rem; font-size: 0.9rem;">Okay</button>
+        </div>
+    </section>
+
+    <div id="app" style="opacity: 0; pointer-events: none; transition: opacity 3s ease;">
+      
+      <!-- Screen 1: Arrival -->
+      <section id="ref-arrival" class="section active">
+        <p class="serif-text">
+            Hum yaha tk kisi rush mein nhi aaye pihuuu<br>
+            We arrived here slowly , steadly.<br>
+            With patience.<br>
+            With care.<br><br>
+            We just chose each other,<br>
+            carefully.
+        </p>
+      </section>
+
+      <!-- Screen 2: Distance -->
+      <section id="ref-distance" class="section">
+        <p class="serif-text">
+            Duur toh kaafi the pihuuu<br>
+            But i always feel ki kuch khaas manga nhi iss distance ne<br>
+            No big promises<br>
+            No grand gestures<br>
+            No forced love<br><br>
+            Just small , steady choices<br>
+            From both of us.
+        </p>
+      </section>
+
+      <!-- Screen 3: Effort -->
+      <section id="ref-effort" class="section">
+        <p class="serif-text">
+            Loving you na pihuuu like it was never about proving anything<br>
+            It is as easy as it could ever be<br>
+            Just showing up.<br>
+            Just honesty.<br>
+            Just us ,<br>
+            Listening.<br>
+            Staying.<br>
+            Again and Again !!!
+        </p>
+      </section>
+
+      <!-- Screen 4: Meeting -->
+      <section id="ref-meeting" class="section">
+        <p class="serif-text">
+            Hum kabhi mile nahi the Pihuuu.<br><br>
+            Phir bhi woh bond,<br>
+            woh trust,<br>
+            woh commitment…<br>
+            sab kuch ek sapne jaisa lgta tha.<br><br>
+            Aur jab mile,<br>
+            toh woh pal bhi<br>
+            sapne se kam nahi tha.<br><br>
+            Us moment mujhe smjh aaya<br>
+            tumse milna time ke baare mein nahi tha.<br>
+            It was about<br>
+            how real it felt.
+        </p>
+      </section>
+
+      <!-- Screen 5: Growth (Invisible Steps) -->
+      <section id="ref-growth" class="section">
+         <h1 class="serif-text" style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.8; letter-spacing: 0.1em; text-transform: uppercase;">
+             3. The Invisible Steps
+         </h1>
+         
+         <p class="serif-text" style="font-size: 1.1rem; margin-bottom: 1rem; opacity: 0.9; font-style: italic;">
+             Things I learned while loving you, Pihuuu.
+         </p>
+         
+         <p id="climb-instruction" class="serif-text" style="font-size: 0.9rem; margin-bottom: 3rem; opacity: 0.7; color: #b0c4de;">
+             (Click to climb to the next step)
+         </p>
+         
+         <div class="growth-steps-container">
+             <!-- Step 1 -->
+             <div class="growth-step" data-step="1">
+                 <span class="step-title">1.Listening more.</span>
+                 <p class="step-content">
+Maine sikha ki hrr baar bolna zaruri nhi hota
+Kbhi kabhi bss sunna hi kaafi hota hai Pihuuu
+Without fixing. Without rushing</p>
+             </div>
+
+             <!-- Step 2 -->
+             <div class="growth-step" data-step="2" style="display: none;">
+                 <span class="step-title">2.Understanding your life</span>
+                 <p class="step-content">
+I slowly understood yaar that you had your own exhaustion, responsibilities
+Loving you meant choosing empathy over expectation</p>
+             </div>
+
+             <!-- Step 3 -->
+             <div class="growth-step" data-step="3" style="display: none;">
+                 <span class="step-title">3.Letting go of constant availability</span>
+                 <p class="step-content">I unlearned ki pyaar ka mtlb humesha present hona hota hai delayed replies ka mtlb interest loose hona ya distance nhi hota
+                    Love didn’t leave when you were busy.
+It waited.</p>
+             </div>
+
+             <!-- Step 4 -->
+             <div class="growth-step" data-step="4" style="display: none;">
+                 <span class="step-title">4.Choosing patience over panic</span>
+                 <p class="step-content">Pehle na mein bhoot overthink krta tha and shyd ab bhi kru but i learned to trust what we built instead of doubting it.</p>
+             </div>
+
+             <!-- Step 5 -->
+             <div class="growth-step" data-step="5" style="display: none;">
+                 <span class="step-title">5.Fighting without breaking</span>
+                 <p class="step-content">Pta pihuuu best thing i learned is its better to stay uncomfortable together rather than bhaagna aur phir ultimately it will make sense and sb fix ho jayega</p>
+             </div>
+
+             <!-- Step 6 -->
+             <div class="growth-step" data-step="6" style="display: none;">
+                 <span class="step-title">6.Loving without holding too tight</span>
+                 <p class="step-content">I learned that tere ko space dena to grow and achieve yr dreams and still holding you is also loving you</p>
+             </div>
+
+             <!-- Step 7 -->
+             <div class="growth-step" data-step="7" style="display: none;">
+                 <span class="step-title">7. Choosing you—again</span>
+                 <p class="step-content">
+Not once.
+Not dramatically.
+But quietly.
+In small moments.
+Every day.
+
+Even when it was hard.
+Even when it was distant.
+Even when it was uncertain.</p>
+             </div>
+         </div>
+         
+         <!-- Closing micro-line -->
+         <p class="serif-text" style="font-size: 0.9rem; margin-top: 4rem; opacity: 0.3; text-align: center; font-style: italic;">
+             These weren't visible steps.<br>
+             But they changed everything.
+         </p>
+      </section>
+
+      <!-- Screen 6: Choice -->
+      <section id="ref-choice" class="section">
+         <!-- Multiple Choice Toggles -->
+         <div class="choice-toggles-container" id="choice-toggles-container">
+             
+             <!-- Toggle 1: Staying -->
+             <div class="choice-toggle-item" data-toggle="1">
+                 <div class="toggle-track">
+                     <div class="toggle-knob"></div>
+                 </div>
+                 <div class="toggle-text">
+                     <p class="before-text">staying</p>
+                     <p class="after-text" style="display: none;">
+                         We stayed.<br>
+                         Even when it was quiet.
+                     </p>
+                 </div>
+             </div>
+
+             <!-- Toggle 2: Listening -->
+             <div class="choice-toggle-item" data-toggle="2">
+                 <div class="toggle-track">
+                     <div class="toggle-knob"></div>
+                 </div>
+                 <div class="toggle-text">
+                     <p class="before-text">listening</p>
+                     <p class="after-text" style="display: none;">
+                         We listened.<br>
+                         Without rushing us.
+                     </p>
+                 </div>
+             </div>
+
+             <!-- Toggle 3: Trusting -->
+             <div class="choice-toggle-item" data-toggle="3">
+                 <div class="toggle-track">
+                     <div class="toggle-knob"></div>
+                 </div>
+                 <div class="toggle-text">
+                     <p class="before-text">trusting</p>
+                     <p class="after-text" style="display: none;">
+                         We trusted.<br>
+                         What we were building.
+                     </p>
+                 </div>
+             </div>
+
+             <!-- Toggle 4: Waiting -->
+             <div class="choice-toggle-item" data-toggle="4">
+                 <div class="toggle-track">
+                     <div class="toggle-knob"></div>
+                 </div>
+                 <div class="toggle-text">
+                     <p class="before-text">waiting</p>
+                     <p class="after-text" style="display: none;">
+                         We waited.<br>
+                         Without keeping score.
+                     </p>
+                 </div>
+             </div>
+
+             <!-- Toggle 5: Choosing -->
+             <div class="choice-toggle-item" data-toggle="5">
+                 <div class="toggle-track">
+                     <div class="toggle-knob"></div>
+                 </div>
+                 <div class="toggle-text">
+                     <p class="before-text">choosing</p>
+                     <p class="after-text" style="display: none;">
+                         And every time,<br>
+                         We chose each other, Pihuuu.
+                     </p>
+                 </div>
+             </div>
+         </div>
+         
+         <!-- Final Text (appears after all toggles) -->
+         <div class="choice-final-text" id="choice-final-text" style="opacity: 0; pointer-events: none;">
+             <p class="serif-text" style="font-size: 1.6rem; margin-bottom: 1.5rem;">
+                1 saal pehle tujhe propose krna and choosing you as my life partner was the best choice decision i could and have ever made pihuuu♥️<br>
+             </p>
+             <p class="serif-text" style="font-size: 1.3rem; font-style: italic; opacity: 0.9;">
+                 I will choose you again.<br>
+                 And again.
+             </p>
+         </div>
+      </section>
+
+      <!-- Screen 7: Gratitude -->
+      <section id="ref-gratitude" class="section">
+         <!-- Title -->
+         <p class="gratitude-title serif-text" style="font-size: 1.2rem; opacity: 0.5; letter-spacing: 0.1em; margin-bottom: 3rem;">
+             things i noticed
+         </p>
+         
+         <!-- List of quiet things -->
+         <div class="gratitude-list">
+             <p class="gratitude-item serif-text" data-item="1">— the way you stay, even when its hard</p>
+             <p class="gratitude-item serif-text" data-item="2">— aise waise humesha reply krna chahe late bhi kre krta toh hai hehe</p>
+             <p class="gratitude-item serif-text" data-item="3">— tera mujhpr bharosa yaar iss level ka uff</p>
+             <p class="gratitude-item serif-text" data-item="4">— duur ho ya pass hai tu meri hii yeh baat hrr baar mujhe btana</p>
+             <p class="gratitude-item serif-text" data-item="5">— humesha khud se aur sbse jayda dena mere ko aapne ehsiyat se jayda pihuuu</p>
+         </div>
+         
+         <!-- Final thank you -->
+         <div class="gratitude-final" id="gratitude-final" style="opacity: 0;">
+             <p class="serif-text" style="font-size: 1.5rem; line-height: 1.8;">
+                 Thank you for choosing me too, Pihuuu.<br>
+                 In the ways that actually mattered.
+             </p>
+         </div>
+      </section>
+
+      <!-- Screen 8: Pre-Chapters Transition (Soft Handoff) -->
+      <section id="ref-pre-chapters" class="section">
+        <p class="serif-text">There’s more here,<br>if you want to stay a little longer.</p>
+      </section>
+
+      <!-- Section: The Year We Built (Chapters) -->
+      <section id="ref-chapters" class="section" style="display: block; overflow-y: auto; text-align: left; -webkit-overflow-scrolling: touch; padding: 40px 20px;">
+        <div style="max-width: 400px; margin: 0 auto; padding-bottom: 100px;">
+            <p class="serif-text" style="font-size: 1.2rem; margin-bottom: 2rem; text-align: center; opacity: 0.8;">The Year We Built</p>
+            
+            <!-- Chapter Cards -->
+            <div class="chapter-card" onclick="toggleChapter(this, event)">
+                <div class="chapter-header">When We Started</div>
+                <div class="chapter-content">
+                    <p>It didn't begin with a promise of ease. It began with an instinct. A quiet knowing that this—us—was worth the miles.</p>
+                </div>
+            </div>
+
+            <div class="chapter-card" onclick="toggleChapter(this, event)">
+                <div class="chapter-header">When Distance Hurt</div>
+                <div class="chapter-content">
+                    <p>Screens aren't skin. There were nights the silence felt heavier than usual. But we learned to hold each other with words.</p>
+                </div>
+            </div>
+
+            <div class="chapter-card" onclick="toggleChapter(this, event)">
+                <div class="chapter-header">When We Fought</div>
+                <div class="chapter-content">
+                    <p>We didn't run. We stayed in the discomfort until it turned into understanding. We built bridges over the gaps.</p>
+                </div>
+            </div>
+
+            <div class="chapter-card" onclick="toggleChapter(this, event)">
+                <div class="chapter-header">When We Chose Again</div>
+                <div class="chapter-content">
+                    <p>It wasn't one big choice. It was a hundred small ones. To call. To listen. To forgive. To stay.</p>
+                </div>
+            </div>
+
+            <div class="chapter-card" onclick="toggleChapter(this, event)">
+                <div class="chapter-header">Where We Stand Now</div>
+                <div class="chapter-content">
+                    <p>Not simple. Not perfect. But built. A foundation that distance couldn't erode.</p>
+                </div>
+            </div>
+
+            <div style="height: 3rem;"></div>
+            
+            <button id="btn-continue-closing" class="btn-come-in" style="margin: 0 auto; display: block; opacity: 1; animation: none;">Continue</button>
+        </div>
+      </section>
+
+      <!-- Section: Moments That Stayed (Scrapbook) -->
+      <section id="ref-scrapbook" class="section" style="display: block; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 0 40px; -webkit-overflow-scrolling: touch;">
+         <div style="display: inline-flex; align-items: center; height: 100%; gap: 40px; padding-right: 50vw;">
+             <!-- Introduction Card -->
+             <div class="polaroid-intro" style="display: inline-block; vertical-align: middle; white-space: normal; width: 300px;">
+                 <p class="serif-text">Moments That Stayed.</p>
+                 <p class="small-text" style="margin-top: 1rem;">(Swipe to flip through)</p>
+             </div>
+
+             <!-- Card 1 -->
+             <div class="polaroid">
+                 <div class="polaroid-image"></div> <!-- Abstract/Empty -->
+                 <p class="handwritten caption">The night the silence felt full, not empty.</p>
+             </div>
+
+             <!-- Card 2 -->
+             <div class="polaroid">
+                 <div class="polaroid-image"></div>
+                 <p class="handwritten caption">When I chose understanding over winning.</p>
+             </div>
+
+             <!-- Card 3 -->
+             <div class="polaroid">
+                 <div class="polaroid-image"></div>
+                 <p class="handwritten caption">That 3am call where we didn't even speak.</p>
+             </div>
+
+             <!-- Continue Action -->
+             <div style="display: inline-block; vertical-align: middle; padding-left: 20px;">
+                 <button id="btn-continue-letters" class="btn-come-in" style="opacity: 1; animation: none;">Continue</button>
+             </div>
+         </div>
+      </section>
+
+      <!-- Section: Distance Map (BLR - NGP) -->
+      <section id="ref-map" class="section" style="display: block; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 0 40px; -webkit-overflow-scrolling: touch;">
+          <div style="display: inline-flex; align-items: center; height: 100%; min-width: 200vw; gap: 40px; position: relative;">
+              <!-- Line -->
+              <div style="position: absolute; left: 60px; right: 260px; top: 50%; height: 1px; background: rgba(255,255,255,0.2); z-index: 0;"></div>
+              
+              <!-- Start: BLR -->
+              <div style="z-index: 1; text-align: center; margin-right: 15vw;">
+                  <div class="map-dot"></div>
+                  <div class="map-label">BLR</div>
+              </div>
+
+              <!-- Words along path -->
+              <div class="map-word" style="margin-right: 15vw;">Trust</div>
+              <div class="map-word" style="margin-right: 15vw;">Patience</div>
+              
+              <!-- The Moon (26 Jan 2025) -->
+              <div style="z-index: 2; text-align: center; margin-right: 15vw;">
+                  <!-- Waning Crescent Visual approx -->
+                  <div style="width: 20px; height: 20px; border-radius: 50%; box-shadow: inset -4px 0 0 2px #fff; transform: rotate(-15deg); margin: 0 auto;"></div>
+                  <div class="map-label" style="margin-top: 10px; font-size: 0.7rem; opacity: 0.6;">26.01.25</div>
+              </div>
+              
+              <div class="map-word" style="margin-right: 15vw;">Missing</div>
+              <div class="map-word" style="margin-right: 15vw;">Choosing again</div>
+
+              <!-- End: NGP -->
+              <div style="z-index: 1; text-align: center; margin-right: 10vw;">
+                  <div class="map-dot"></div>
+                  <div class="map-label">NGP</div>
+              </div>
+              
+              <!-- Ending Text -->
+              <div style="display: inline-block; vertical-align: middle; white-space: normal; width: 300px; text-align: center;">
+                  <p class="serif-text" style="font-size: 1.4rem;">Distance exists on maps.<br>Not in effort.</p>
+                  <div style="height: 2rem;"></div>
+                  <button id="btn-continue-hold" class="btn-come-in" style="margin: 0 auto; display: block; opacity: 1; animation: none;">Continue</button>
+              </div>
+          </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Section: The Sky We Share (Live) -->
+      <section id="ref-sky" class="section">
+          <!-- Live Gradient Layer -->
+          <div id="sky-live-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6; transition: background 2s ease;"></div>
+          
+          <div style="position: relative; z-index: 10;">
+             <p class="serif-text">The sky is different.<br>But it holds the same moon<br>we confessed to.</p>
+             <div style="height: 2rem;"></div>
+             <!-- Live Data Labels -->
+             <p id="sky-labels" class="small-text" style="opacity: 0.7; letter-spacing: 0.1em; font-family: 'Outfit';">
+                 26.01.2025 • Forever
+             </p>
+          </div>
+      </section>
+
+      <!-- Section: How I Hold You (Linear 1) -->
+      <section id="ref-hold-1" class="section">
+        <p class="serif-text">I protect your peace.</p>
+      </section>
+
+      <!-- Section: How I Hold You (Linear 2) -->
+      <section id="ref-hold-2" class="section">
+        <p class="serif-text">I don't rush you when you're overwhelmed.</p>
+      </section>
+
+      <!-- Section: Unsent Letters -->
+      <section id="ref-letters" class="section" style="display: block; overflow-y: auto; overflow-x: hidden;">
+         <p class="serif-text" style="text-align: center; margin-bottom: 2rem;">Unsent Letters</p>
+         
+         <div style="max-width: 450px; margin: 0 auto; padding-bottom: 100px;">
+             <!-- Letter 1 -->
+             <div class="envelope" onclick="toggleLetter(this)">
+                 <div class="envelope-flap"></div>
+                 <div class="envelope-content">
+                     <p class="handwritten">I never said this because I was scared it would sound heavy. But you are the quietest, safest place I know.</p>
+                 </div>
+                 <div class="envelope-label">Open</div>
+             </div>
+
+             <!-- Letter 2 -->
+             <div class="envelope" onclick="toggleLetter(this)">
+                 <div class="envelope-flap"></div>
+                 <div class="envelope-content">
+                     <p class="handwritten">I never said this because words felt small. But thank you for letting me be imperfect.</p>
+                 </div>
+                 <div class="envelope-label">Open</div>
+             </div>
+
+             <!-- Letter 3 -->
+             <div class="envelope" onclick="toggleLetter(this)">
+                 <div class="envelope-flap"></div>
+                 <div class="envelope-content">
+                     <p class="handwritten">I never said this, but I knew. I knew from the start.</p>
+                 </div>
+                 <div class="envelope-label">Open</div>
+             </div>
+
+             <div style="height: 3rem;"></div>
+             <button id="btn-continue-future" class="btn-come-in" style="margin: 0 auto; display: block; opacity: 1; animation: none;">Continue</button>
+         </div>
+      </section>
+
+      <!-- Section: For a Future Us -->
+      <section id="ref-future" class="section aged-paper">
+          <div style="max-width: 500px; text-align: left; padding: 20px;">
+              <p class="serif-text" style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.6;">For a future us</p>
+              <p class="serif-text" style="font-size: 1.1rem; line-height: 1.8;">
+                  I’m not writing this to promise you forever. Forever is a heavy word, and we are traveling light. 
+                  I’m writing this to tell you that today, in this quiet moment, I am sure. 
+                  I don't know what cities we'll live in, or who we'll be when we get there. 
+                  But I hope we keep looking at each other like this. Like we know something the rest of the world doesn't.
+              </p>
+          </div>
+      </section>
+
+      <!-- Section: Just Between Us (Private) -->
+      <section id="ref-private" class="section" style="display: block; overflow-y: auto;">
+          <!-- Gate -->
+          <div id="private-gate" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <p class="small-text" style="color: var(--privacy-teal); letter-spacing: 0.2em; margin-bottom: 1rem;">WARNING</p>
+              <p class="serif-text" style="font-size: 1.2rem; margin-bottom: 3rem;">This page is not for screenshots.</p>
+              <button id="btn-enter-private" class="btn-come-in">Just Between Us</button>
+          </div>
+
+          <!-- Private Content (Hidden) -->
+          <div id="private-content" style="display: none; height: 100%; flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
+               <div style="background: rgba(20, 20, 30, 0.8); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 8px; max-width: 400px; width: 100%;">
+                   <p class="small-text" style="text-align: center; margin-bottom: 20px; opacity: 0.5;">VOICE NOTE / PRIVATE</p>
+                   <!-- Visual Player Placeholder -->
+                   <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                       <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                           <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                       </div>
+                       <div style="flex: 1; height: 2px; background: rgba(255,255,255,0.2); position: relative;">
+                           <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 30%; background: #fff;"></div>
+                       </div>
+                   </div>
+                   <p class="handwritten" style="font-size: 1.2rem; color: #ccc;">"I love you. More than I usually say."</p>
+               </div>
+               
+               <div style="height: 3rem;"></div>
+               <button id="btn-continue-final-page" class="btn-come-in" style="opacity: 0.5; font-size: 0.8rem;">Continue</button>
+          </div>
+      </section>
+
+      <!-- Section: Ending -->
+      <section id="ref-final" class="section" style="overflow-y: auto; overflow-x: hidden; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);">
+        <div style="text-align: center; width: 100%; padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            
+            <!-- Initial text (fades out after Stay click) -->
+            <div id="initial-text" style="transition: opacity 1.5s ease, transform 1.5s ease;">
+                <p class="serif-text" style="font-size: 1.8rem; line-height: 1.8; margin-bottom: 3rem; opacity: 0.95; letter-spacing: 0.02em;">
+                    I don't know every chapter.<br>
+                    But I know who I want beside me<br>
+                    while writing them.
+                </p>
+                
+                <button id="btn-stay" class="btn-come-in" style="border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); padding: 1rem 3rem; font-size: 1.1rem; letter-spacing: 0.1em;">Stay</button>
+            </div>
+            
+            <!-- Image reveal (scales in, then expands to fullscreen) -->
+            <div id="final-image-container" style="display: none; opacity: 0; transition: all 3s ease; transform: scale(0.95); width: 100%; max-width: 500px; margin: 3rem auto; position: relative;">
+                <img src="/kiss.jpg" alt="Us" style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7); object-fit: cover; object-position: center 30%;">
+            </div>
+            
+            <!-- Final text (appears after image) -->
+            <div id="final-text-container" style="display: none; opacity: 0; transition: opacity 2.5s ease; margin-top: 3rem;">
+                <p class="serif-text" style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 300; letter-spacing: 0.02em;">
+                    Always, Pihuuu.
+                </p>
+                <p class="serif-text" style="font-size: 3rem; color: #ff6b9d; text-shadow: 0 0 20px rgba(255, 107, 157, 0.3);">
+                    ♥
+                </p>
+                
+                <!-- Subtle closing line -->
+                <p class="small-text" style="margin-top: 4rem; opacity: 0.3; font-size: 0.75rem; letter-spacing: 0.15em;">
+                    ONE YEAR • INFINITE MOMENTS
+                </p>
+            </div>
+        </div>
+      </section>
+    </div>
+  </main>  
+    <!-- Private Watermark -->
+    <div style="position: fixed; bottom: 20px; right: 20px; font-size: 10px; opacity: 0.1; font-family: 'Outfit'; pointer-events: none;">
+        PRIVATE / US
+    </div>
+
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/climbing-steps.js"></script>
+    <script type="module" src="/dev-shortcuts.js"></script>
+    <script type="module" src="/choice-toggle.js"></script>
+    <script type="module" src="/gratitude.js"></script>
+    <script type="module" src="/final-section.js"></script>
+  </body>
+</html>
+
