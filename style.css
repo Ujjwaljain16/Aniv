@@ -1,0 +1,833 @@
+:root {
+  /* Palette */
+  --bg-gradient-start: #1a1b41; /* Deep Indigo */
+  --bg-gradient-end: #f7cad0;   /* Soft Blush */
+  --text-slate: #94a3b8;
+  --text-light: #e2e8f0;
+  --privacy-teal: #20b2aa;      /* LightSeaGreen / Privacy Teal */
+  
+  /* Glass */
+  --glass-bg-fallback: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Fonts */
+  --font-hand: 'Nothing You Could Do', cursive;
+  --font-body: 'Outfit', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+
+  /* Animation Timings */
+  --fade-duration: 2.5s;
+  --breath-duration: 0.5s;
+}
+
+/* Global Reset */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* No scroll */
+  font-family: var(--font-body);
+  color: var(--text-slate);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  user-select: none; /* Prevent selection */
+  -webkit-tap-highlight-color: transparent;
+  background: #000; /* Fallback */
+  overscroll-behavior: none; /* Prevent rubber-banding on whole page */
+}
+
+/* Background Layer */
+#bg-layer {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  background-size: 200% 200%;
+  animation: drift 60s ease infinite;
+  z-index: -2;
+  transition: filter 2.5s ease-out, opacity 2s ease;
+  filter: blur(20px); /* Initial Blur */
+}
+
+/* Micro-presence: Grain */
+#grain-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  transition: opacity 2s ease;
+}
+
+/* Arrival Mode - Romantic Night Gradient */
+body.arrival-mode #bg-layer,
+body.arrival-mode #grain-overlay {
+    opacity: 0;
+}
+
+body.arrival-mode {
+    background: linear-gradient(135deg, #232232, #4a3b42); /* Deep Indigo to Muted Mauve */
+    background-size: 200% 200%;
+    animation: drift 40s ease infinite; /* Slow drift for life */
+}
+
+/* Gateway Input */
+#password-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  width: 100px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 0.5rem;
+  outline: none;
+  transition: border-color 0.3s ease, width 0.3s ease;
+  letter-spacing: 0.2rem;
+}
+
+#password-input:focus {
+  border-bottom-color: var(--privacy-teal);
+  width: 140px;
+}
+
+#password-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.1rem;
+}
+
+/* Gentle Shake Animation */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+.shake-gentle {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Arrival Styles */
+#arrival {
+    position: fixed; /* Override absolute */
+    background: transparent; /* Body has the color */
+    z-index: 40;
+    transition: opacity 2s ease;
+    color: #e2e2e2; 
+}
+
+/* Micro-hierarchy for Arrival Text */
+#arrival .serif-text:nth-of-type(1) {
+    color: #ffffff;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+#arrival .serif-text:nth-of-type(2) {
+    color: #e2e2e2;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+#arrival .serif-text:nth-of-type(3) {
+    color: #dcd6d6; /* Subtle warmth/dimmer */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.serif-text {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.8; 
+    letter-spacing: 0.03em;
+    opacity: 0;
+    transform: translateY(10px);
+    /* removed auto animation */
+    margin-bottom: 2rem; 
+}
+
+/* Trigger animation when parent is active */
+.section.active .serif-text {
+    animation: fadeInUp 2s forwards;
+}
+
+.reveal-delay-1 { animation-delay: 1.5s; }
+.reveal-delay-2 { animation-delay: 3.5s; } /* Read time */
+.reveal-delay-3 { animation-delay: 5.5s; }
+
+.btn-come-in {
+    background: rgba(255, 255, 255, 0.03); /* Faint fill */
+    border: 1.5px solid rgba(255, 255, 255, 0.4); 
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 0.95rem; 
+    letter-spacing: 0.05em;
+    color: #f0f0f0;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s ease;
+    /* removed auto animation */
+}
+
+.section.active .btn-come-in {
+    animation: fadeIn 2s forwards;
+}
+
+.btn-come-in:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); 
+    transform: scale(1.02);
+}
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Pause Room */
+#pause-room {
+    position: fixed;
+    background: transparent;
+    transition: opacity 2s ease;
+}
+
+#pause-room .serif-text {
+    color: #e2e2e2;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.15); /* Comfortable, legible glow */
+}
+
+#sound-toggle:hover {
+    opacity: 0.6 !important;
+}
+
+/* Main Journey Text Updates */
+#app .serif-text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Good contrast on deep gradient */
+    opacity: 1; /* Reset opacity logic, handled by section parent? No, section parent handles opacity. */
+    /* Wait, .serif-text has animation: fadeInUp. 
+       In the Main Flow, we want to control opacity via the PARENT section fading in/out.
+       Double animation (parent fade + child fadeInUp) might be messy or nice.
+       Prompt says: "Current text fades out... Next text fades in."
+       If we use the parent section for fading, we should remove the child animation for the main flow.
+    */
+    animation: none;
+    transform: none;
+    opacity: 1;
+}
+
+/* Closing Screen Update */
+#closing h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+}
+
+/* Chapter Cards */
+.chapter-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Minimal border */
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.chapter-card.expanded {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.chapter-header {
+    padding: 1.2rem 1.5rem;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    cursor: pointer;
+    position: relative;
+    /* Optional: Add chevron? Simplicity says no, maybe just opacity hint */
+}
+
+.chapter-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chapter-content p {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    font-family: var(--font-serif); /* Keep it story-like */
+    font-size: 1.15rem; /* Serif needs to be slightly larger */
+    color: #dadada; /* Slightly lighter for readabilty */
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+}
+
+.chapter-card.expanded .chapter-content {
+    max-height: 5000px; /* Safe upper limit for very long text */
+}
+
+/* Scrollbar tweaks */
+#ref-chapters::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+@keyframes drift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Typography */
+h1 {
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.handwritten {
+  font-family: var(--font-hand);
+  font-size: 1.8rem;
+  line-height: 1.4;
+  color: #fff;
+  opacity: 0.95;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-top: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Glassmorphism Panel */
+.glass {
+  background: var(--glass-bg-fallback);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin: 1.5rem;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 400px;
+  transition: transform 0.3s ease;
+}
+
+@supports (backdrop-filter: blur(16px)) {
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+/* Section Management */
+.section {
+  position: absolute;
+  top: 0; left: 0; 
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--fade-duration) cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 40px 20px; /* More padding for safety */
+  z-index: 1;
+  
+  /* Scroll safety for long text */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.section::-webkit-scrollbar { 
+    display: none; /* Hide scrollbar Webkit */
+}
+
+.section.active {
+  opacity: 1;
+  pointer-events: auto; /* Allow clicks only when active */
+  z-index: 10;
+}
+
+/* Breath Pause State - Global Fade Out */
+body.breathing .section {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity var(--breath-duration) ease-out;
+}
+
+/* Utility: Gate Color */
+.gate-text {
+  color: var(--privacy-teal);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+/* --- Scrapbook Section --- */
+#ref-scrapbook {
+    align-items: flex-start; /* Align top for scroll */
+    /* Override centering for this section */
+    justify-content: flex-start; 
+    overscroll-behavior-x: contain; /* Prevent browser back swipe */
+}
+
+.polaroid {
+    display: inline-block;
+    vertical-align: middle;
+    width: 280px;
+    background: #fdfdfd;
+    padding: 15px 15px 50px 15px; /* Bottom padding for caption */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    margin: 0 10px;
+    white-space: normal;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+    transform: scale(1.02) rotate(0deg) !important;
+    z-index: 5;
+}
+
+.polaroid-image {
+    width: 100%;
+    height: 240px;
+    background: #eee;
+    margin-bottom: 15px;
+    /* Abstract grain or blurred color */
+    background: linear-gradient(45deg, #e6e6e6, #f0f0f0);
+}
+
+.caption {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    color: #333;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* Random Rotations */
+.polaroid:nth-child(2) { transform: rotate(-2deg); }
+.polaroid:nth-child(3) { transform: rotate(3deg); }
+.polaroid:nth-child(4) { transform: rotate(-1.5deg); }
+
+/* --- Unsent Letters Section --- */
+.envelope {
+    background: rgba(245, 245, 240, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px; /* Soft envelope shape */
+    padding: 20px;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    /* Texture hint */
+    background-image: linear-gradient(#f0f0f0 1px, transparent 1px);
+    background-size: 100% 2rem; /* Lined paper hint? No, envelope texture */
+    background-size: auto;
+    background-image: none;
+}
+
+.envelope.open {
+    background: #fffdf5; /* Warmer open paper */
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.envelope-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+    user-select: none; /* Privacy */
+}
+
+.envelope.open .envelope-content {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+}
+
+.envelope-label {
+    text-align: center;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-top: 10px;
+}
+
+.envelope.open .envelope-label {
+    display: none;
+}
+
+.envelope-content p {
+    font-family: var(--font-hand);
+    color: #444;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* --- Distance Map --- */
+#ref-map {
+    overscroll-behavior-x: contain;
+}
+
+.map-dot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.map-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--text-slate);
+    text-transform: uppercase;
+}
+
+.map-word {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* --- Future Us (Aged Paper) --- */
+.aged-paper {
+    background: radial-gradient(circle, rgba(100, 90, 80, 0.15) 0%, transparent 80%);
+    /* Creates a subtle warm center, fading to dark */
+}
+
+/* --- Blackout State --- */
+body.blackout #bg-layer,
+body.blackout #grain-overlay,
+body.blackout .section {
+    opacity: 0 !important;
+    transition: opacity 4s ease-out; /* Slow fade */
+}
+
+#sky-labels {
+    opacity: 0.6;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
+
+body.blackout {
+    background: #000 !important; /* Pure black */
+    cursor: none; /* Hide cursor for immersion */
+}
+
+/* --- Choice Section (Multiple Toggles) --- */
+.choice-toggles-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 3rem 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 50vh; /* Center vertically */
+}
+
+.choice-toggle-item {
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    cursor: pointer;
+}
+
+.choice-toggle-item.visible {
+    display: flex; /* Show when visible */
+    opacity: 1; /* Make visible even in neutral state */
+}
+
+.choice-toggle-item.active {
+    opacity: 1;
+}
+
+.choice-toggle-item.completed {
+    opacity: 0.85;
+    cursor: default;
+}
+
+.toggle-track {
+    width: 80px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toggle-knob {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Active toggle state */
+.choice-toggle-item.active .toggle-track {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.choice-toggle-item.active .toggle-knob {
+    left: 43px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Toggle text */
+.toggle-text {
+    flex: 1;
+    font-family: var(--font-serif);
+}
+
+.before-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.05em;
+    margin: 0;
+    transition: opacity 0.5s ease;
+}
+
+.after-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.choice-toggle-item.active .after-text {
+    opacity: 1;
+}
+
+/* Final text */
+.choice-final-text {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
+}
+
+.choice-final-text.revealed {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* --- Gratitude Section (Receipt of Quiet Things) --- */
+.gratitude-title {
+    text-align: center;
+}
+
+.gratitude-list {
+    max-width: 500px;
+    margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.gratitude-item {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0 !important; /* Force hidden initially */
+    transform: translateY(10px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    line-height: 1.6;
+}
+
+.gratitude-item.visible {
+    opacity: 1 !important; /* Force visible when class added */
+    transform: translateY(0);
+}
+
+.gratitude-final {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0 !important; /* Force hidden initially */
+    transition: opacity 2s ease;
+}
+
+.gratitude-final.revealed {
+    opacity: 1 !important;
+}
+
+/* --- Growth Section (Invisible Steps) --- */
+.growth-steps-container {
+    display: flex;
+    flex-direction: column-reverse; /* Bottom to top - Step 1 at bottom */
+    align-items: flex-start; /* Left align for staircase */
+    gap: 30px;
+    padding: 20px;
+    width: 100%;
+    max-width: 700px;
+    max-height: 60vh; /* Limit height */
+    overflow-y: auto; /* Enable scrolling */
+    overflow-x: hidden;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for growth section */
+.growth-steps-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.growth-steps-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.growth-steps-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.growth-steps-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.growth-step {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    max-width: 400px;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    opacity: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+/* First step visible on load */
+.section.active .growth-step[data-step="1"] {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Diagonal Staircase Pattern - Step 1 starts furthest left, Step 7 furthest right */
+.growth-step[data-step="1"] { 
+    margin-left: 0; 
+    border-left: 3px solid #f7cad0; 
+}
+
+.growth-step[data-step="2"] { 
+    margin-left: 50px; 
+    border-left: 3px solid #b0c4de; 
+}
+
+.growth-step[data-step="3"] { 
+    margin-left: 100px; 
+    border-left: 3px solid #ffb7b2; 
+}
+
+.growth-step[data-step="4"] { 
+    margin-left: 150px; 
+    border-left: 3px solid #ffd6a5; 
+}
+
+.growth-step[data-step="5"] { 
+    margin-left: 200px; 
+    border-left: 3px solid #caffbf; 
+}
+
+.growth-step[data-step="6"] { 
+    margin-left: 250px; 
+    border-left: 3px solid #a0c4ff; 
+}
+
+.growth-step[data-step="7"] { 
+    margin-left: 300px; 
+    border-left: 3px solid #ffc6ff; 
+}
+
+.growth-step:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.growth-step .step-title {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+    color: #f0f0f0; /* Brighter color for visibility */
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.growth-step .step-content {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: #e2e8f0;
+    line-height: 1.4;
+    margin: 0;
+}
