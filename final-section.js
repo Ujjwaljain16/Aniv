@@ -1,0 +1,158 @@
+// Final Section - Cinematic Image Reveal
+
+function initFinalSection() {
+    const stayBtn = document.getElementById('btn-stay');
+    const initialText = document.getElementById('initial-text');
+    const imageContainer = document.getElementById('final-image-container');
+    const finalTextContainer = document.getElementById('final-text-container');
+    
+    console.log('🎉 Final section elements:', { 
+        stayBtn: !!stayBtn, 
+        initialText: !!initialText, 
+        imageContainer: !!imageContainer, 
+        finalTextContainer: !!finalTextContainer 
+    });
+    
+    if (!stayBtn || !initialText || !imageContainer || !finalTextContainer) {
+        console.error('Missing elements!');
+        return;
+    }
+    
+    console.log('✅ All elements found, setting up click handler');
+    
+    stayBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent navigation
+        
+        console.log('🎬 Stay button clicked - beginning cinematic reveal');
+        
+        // 1. Fade out initial text and button together
+        console.log('Step 1: Fading out initial text');
+        requestAnimationFrame(() => {
+            initialText.style.opacity = '0';
+            initialText.style.transform = 'translateY(-20px)';
+        });
+        
+        setTimeout(() => {
+            console.log('Step 2: Hiding initial text, showing image container');
+            initialText.style.display = 'none';
+            
+            // 2. Reveal the image with scale animation
+            imageContainer.style.display = 'block';
+            
+            // Force reflow to ensure display:block is applied
+            imageContainer.offsetHeight;
+            
+            requestAnimationFrame(() => {
+                console.log('Step 3: Animating image in');
+                imageContainer.style.opacity = '1';
+                imageContainer.style.transform = 'scale(1)';
+            });
+            
+            // 3. After image is fully visible, show final text
+            setTimeout(() => {
+                console.log('Step 4: Showing final text container');
+                finalTextContainer.style.display = 'block';
+                
+                // Force reflow
+                finalTextContainer.offsetHeight;
+                
+                requestAnimationFrame(() => {
+                    console.log('Step 5: Fading in final text');
+                    finalTextContainer.style.opacity = '1';
+                });
+                
+                // 4. Subtle heart pulse animation
+                setTimeout(() => {
+                    console.log('Step 6: Starting heart pulse');
+                    const hearts = finalTextContainer.querySelectorAll('p');
+                    console.log('Found paragraphs:', hearts.length);
+                    
+                    // The heart is the second paragraph
+                    if (hearts.length >= 2) {
+                        const heart = hearts[1];
+                        heart.style.transition = 'transform 0.3s ease';
+                        
+                        setInterval(() => {
+                            requestAnimationFrame(() => {
+                                heart.style.transform = 'scale(1.15)';
+                                setTimeout(() => {
+                                    requestAnimationFrame(() => {
+                                        heart.style.transform = 'scale(1)';
+                                    });
+                                }, 300);
+                            });
+                        }, 2000);
+                        
+                        console.log('❤️ Heart pulse started');
+                        
+                        // 5. After heart pulses, expand image to fullscreen for calm ending
+                        setTimeout(() => {
+                            console.log('Step 7: Expanding to fullscreen');
+                            
+                            // Fade out text
+                            finalTextContainer.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                finalTextContainer.style.display = 'none';
+                                
+                                // Expand image to fullscreen
+                                imageContainer.style.position = 'fixed';
+                                imageContainer.style.top = '0';
+                                imageContainer.style.left = '0';
+                                imageContainer.style.width = '100vw';
+                                imageContainer.style.height = '100vh';
+                                imageContainer.style.maxWidth = 'none';
+                                imageContainer.style.margin = '0';
+                                imageContainer.style.zIndex = '999';
+                                
+                                const img = imageContainer.querySelector('img');
+                                if (img) {
+                                    img.style.width = '100%';
+                                    img.style.height = '100%';
+                                    img.style.objectFit = 'cover';
+                                    img.style.objectPosition = 'center 30%'; // Crop to show faces
+                                    img.style.borderRadius = '0';
+                                    img.style.filter = 'grayscale(100%)'; // Black and white
+                                }
+                                
+                                console.log('🖼️ Fullscreen calm ending (B&W)');
+                            }, 2000); // Wait for text to fade
+                        }, 4000); // Wait 4s after heart starts pulsing
+                    }
+                }, 500);
+            }, 3200); // Wait 3.2s after image animation starts (3s transition + 200ms)
+        }, 1500); // Wait for initial text to fade out
+    });
+    
+    console.log('✅ Click handler attached to Stay button');
+}
+
+// Initialize when Final section becomes active
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('📄 DOM loaded, setting up observer for final section');
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.target.classList.contains('active') && 
+                mutation.target.id === 'ref-final') {
+                console.log('🎯 Final section became active!');
+                initFinalSection();
+                observer.disconnect();
+            }
+        });
+    });
+    
+    const finalSection = document.getElementById('ref-final');
+    if (finalSection) {
+        console.log('✅ Final section found, observing for active class');
+        observer.observe(finalSection, { attributes: true, attributeFilter: ['class'] });
+        
+        // Also check if it's already active
+        if (finalSection.classList.contains('active')) {
+            console.log('🎯 Final section already active!');
+            initFinalSection();
+        }
+    } else {
+        console.error('❌ Final section not found!');
+    }
+});
