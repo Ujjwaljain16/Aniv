@@ -202,6 +202,31 @@ window.toggleLetter = function(envelope, event) {
     envelope.classList.toggle('open');
 };
 
+// Expose revealHold for veil overlay interaction
+window.revealHold = function(num, event) {
+    if (event) event.stopPropagation(); // Prevent navigation
+    
+    const veil = document.getElementById(`veil-${num}`);
+    const text = document.getElementById(`hold-text-${num}`);
+    
+    if (!veil || !text) return;
+    
+    // Slide veil down and fade out
+    veil.style.transform = 'translateY(100%)';
+    veil.style.opacity = '0';
+    
+    // Remove blur and brighten text
+    setTimeout(() => {
+        text.style.filter = 'blur(0px)';
+        text.style.opacity = '1';
+    }, 500);
+    
+    // Remove veil from DOM after animation
+    setTimeout(() => {
+        veil.remove();
+    }, 2500);
+};
+
 function setupChapters() {
     const btn = document.getElementById('btn-continue-closing');
     if (btn) {
