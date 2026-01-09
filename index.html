@@ -483,19 +483,33 @@ Even when it was uncertain.</p>
 
       <!-- Section: How I Hold You (Linear 1) -->
       <section id="ref-hold-1" class="section">
-        <p class="serif-text">I protect your peace.</p>
+        <div style="max-width: 500px; margin: 0 auto; position: relative;">
+          <p class="serif-text" id="hold-text-1" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">I protect your peace.</p>
+          
+          <!-- Translucent veil overlay (only over text) -->
+          <div id="veil-1" onclick="revealHold(1, event)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; transition: transform 2.5s ease, opacity 2.5s ease; display: flex; align-items: center; justify-content: center;">
+            <p class="small-text" style="color: rgba(0,0,0,0.6); opacity: 1; letter-spacing: 0.2em; text-shadow: 0 1px 3px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);">TAP TO REVEAL</p>
+          </div>
+        </div>
       </section>
 
       <!-- Section: How I Hold You (Linear 2) -->
       <section id="ref-hold-2" class="section">
-        <p class="serif-text">I don't rush you when you're overwhelmed.</p>
+        <div style="max-width: 500px; margin: 0 auto; position: relative;">
+          <p class="serif-text" id="hold-text-2" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">I don't rush you when you're overwhelmed.</p>
+          
+          <!-- Translucent veil overlay (only over text) -->
+          <div id="veil-2" onclick="revealHold(2, event)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; transition: transform 2.5s ease, opacity 2.5s ease; display: flex; align-items: center; justify-content: center;">
+            <p class="small-text" style="color: rgba(0,0,0,0.6); opacity: 1; letter-spacing: 0.2em; text-shadow: 0 1px 3px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);">TAP TO REVEAL</p>
+          </div>
+        </div>
       </section>
 
 
       <!-- Section: Poetry (Envelope) -->
       <section id="ref-letters" class="section" style="display: block; overflow-y: auto; text-align: left; -webkit-overflow-scrolling: touch; padding: 40px 20px;">
           <div style="max-width: 400px; margin: 0 auto; padding-bottom: 100px;">
-              <p class="serif-text" style="font-size: 1.2rem; margin-bottom: 2rem; text-align: center; opacity: 0.8;">Poetry</p>
+              <p class="serif-text" style="font-size: 1.2rem; margin-bottom: 2rem; text-align: center; opacity: 0.8;">Letters Of Love</p>
               
               <!-- Envelope (Clickable) -->
               <div class="envelope" onclick="toggleLetter(this, event)">
@@ -618,11 +632,33 @@ Tumhi mera sab kuch, mera saara sansaar - tum.
                   <div class="envelope-flap"></div>
                   <div class="envelope-body"></div>
                   <div class="envelope-content">
-                      <p class="handwritten" style="font-size: 1.1rem; line-height: 1.8; white-space: pre-line;">Dil ki gehraaiyon mein bas ek hi naam hai,
-Har pal, har lamha sirf tumhara hi kaam hai...
+                      <p class="handwritten" style="font-size: 1.1rem; line-height: 1.8; white-space: pre-line;">
+                        Kaise batau tujhe...?
 
-Tum ho toh zindagi mein rang hai,
-Tumhare bina sab kuch berang hai...</p>
+Woh chehre ki chamak nahi jo pal bhar mein dhal jaaye... Woh baatein nhi jo sirf zubaan tk simat jaaye... 
+Jo maine tujhme dekha hai, woh shyd tu khud bhi kbhi mehsoos na krr paaye...
+
+Maine teri aankhon mein ek beintehaa gehraai dekhi hai...
+jo sirf dekhti nahi, samajhti bhi hai...
+
+Maine teri muskurahat mein woh roshni dekhi hai jo andheron ko bhi sharminda kr de...
+
+Maine tere alfaazo mein woh sachchai dekhi hai jo is jhooti duniya mein ek misaal hai...
+
+Tujhme maine woh dukh dekha hai jo tu kabhi kisi se keh nahi paayi...
+
+Tere dil ka woh bojh jo tu muskurahat ke parde mein chhupa leti hai....
+
+Teri woh aadatein jo tujhe khud se bhi door le jaati hai... Aur phir bhi tu har din sabke liye wahi roshni, wahi pyaar, wahi apnapan le kar aati hai...
+
+Tujhme maine ek aisa dil dekha hai jo tod diya gya phir bhi pyaar karna nahi chhoda...
+
+Ek aisi rooh jo khud dukh seh krr bhi dusron ke chehre pe hasi dekhna chahti hai...
+
+Aur shyd isiliye, maine sirf tujhme nahi...
+
+Main khud ko bhi sirf tujhme paa liya hai...!!
+                      </p>
                   </div>
                   <div class="envelope-label">Open</div>
               </div>
