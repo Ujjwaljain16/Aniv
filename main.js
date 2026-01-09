@@ -196,6 +196,12 @@ window.toggleChapter = function(card, event) {
     }
 };
 
+// Expose toggleLetter for envelope clicks
+window.toggleLetter = function(envelope, event) {
+    if (event) event.stopPropagation(); // Prevent navigation
+    envelope.classList.toggle('open');
+};
+
 function setupChapters() {
     const btn = document.getElementById('btn-continue-closing');
     if (btn) {
