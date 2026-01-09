@@ -39,6 +39,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   background: #000; /* Fallback */
   overscroll-behavior: none; /* Prevent rubber-banding on whole page */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.9); /* Strong shadows for bright backgrounds */
 }
 
 /* Background Layer */
