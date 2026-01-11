@@ -85,17 +85,17 @@ function initFinalSection() {
                         
                         console.log('❤️ Heart pulse started');
                         
-                        // 5. After heart pulses, expand image to fullscreen for calm ending
+                        // 5. After heart pulses, expand image to fullscreen B&W overlay
                         setTimeout(() => {
-                            console.log('Step 7: Expanding to fullscreen');
+                            console.log('Step 7: Expanding to fullscreen overlay');
                             
-                            // Fade out text
+                            // Fade out text first
+                            finalTextContainer.style.transition = 'opacity 1s ease';
                             finalTextContainer.style.opacity = '0';
                             
+                            // Expand image to fullscreen after short delay
                             setTimeout(() => {
-                                finalTextContainer.style.display = 'none';
-                                
-                                // Expand image to fullscreen
+                                imageContainer.style.transition = 'all 2s ease';
                                 imageContainer.style.position = 'fixed';
                                 imageContainer.style.top = '0';
                                 imageContainer.style.left = '0';
@@ -103,20 +103,21 @@ function initFinalSection() {
                                 imageContainer.style.height = '100vh';
                                 imageContainer.style.maxWidth = 'none';
                                 imageContainer.style.margin = '0';
-                                imageContainer.style.zIndex = '999';
+                                imageContainer.style.zIndex = '9999';
+                                imageContainer.style.borderRadius = '0';
                                 
                                 const img = imageContainer.querySelector('img');
                                 if (img) {
                                     img.style.width = '100%';
                                     img.style.height = '100%';
-                                    img.style.objectFit = 'cover';
-                                    img.style.objectPosition = 'center 30%'; // Crop to show faces
+                                    img.style.objectFit = 'cover'; // Fill entire screen
+                                    img.style.objectPosition = 'center 35%'; // Focus on faces (upper portion)
                                     img.style.borderRadius = '0';
-                                    img.style.filter = 'grayscale(100%)'; // Black and white
+                                    img.style.filter = 'grayscale(100%)';
                                 }
                                 
-                                console.log('🖼️ Fullscreen calm ending (B&W)');
-                            }, 2000); // Wait for text to fade
+                                console.log('🖼️ Fullscreen B&W overlay complete');
+                            }, 500);
                         }, 4000); // Wait 4s after heart starts pulsing
                     }
                 }, 500);

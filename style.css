@@ -39,7 +39,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   background: #000; /* Fallback */
   overscroll-behavior: none; /* Prevent rubber-banding on whole page */
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.9); /* Strong shadows for bright backgrounds */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
 
 /* Background Layer */
@@ -52,6 +52,24 @@ body {
   z-index: -2;
   transition: filter 2.5s ease-out, opacity 2s ease;
   filter: blur(20px); /* Initial Blur */
+}
+
+/* When background is bright (pink dominant), make text darker */
+@keyframes drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Add class to body when background is bright */
+body.bright-bg {
+  color: rgba(50, 50, 70, 0.9); /* Dark slate for bright backgrounds */
+}
+
+body.bright-bg .serif-text,
+body.bright-bg .small-text,
+body.bright-bg p {
+  color: rgba(50, 50, 70, 0.85);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 /* Micro-presence: Grain */
