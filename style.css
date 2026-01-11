@@ -458,6 +458,21 @@ body.breathing .section {
 .polaroid:nth-child(2) { transform: rotate(-2deg); }
 .polaroid:nth-child(3) { transform: rotate(3deg); }
 .polaroid:nth-child(4) { transform: rotate(-1.5deg); }
+.polaroid:nth-child(5) { transform: rotate(2.5deg); }
+.polaroid:nth-child(6) { transform: rotate(-2.8deg); }
+.polaroid:nth-child(7) { transform: rotate(1.8deg); }
+.polaroid:nth-child(8) { transform: rotate(-2.2deg); }
+.polaroid:nth-child(9) { transform: rotate(2.7deg); }
+.polaroid:nth-child(10) { transform: rotate(-1.9deg); }
+.polaroid:nth-child(11) { transform: rotate(2.3deg); }
+.polaroid:nth-child(12) { transform: rotate(-2.5deg); }
+.polaroid:nth-child(13) { transform: rotate(1.6deg); }
+.polaroid:nth-child(14) { transform: rotate(-2.4deg); }
+.polaroid:nth-child(15) { transform: rotate(2.1deg); }
+.polaroid:nth-child(16) { transform: rotate(-1.7deg); }
+.polaroid:nth-child(17) { transform: rotate(-2.3deg); }
+.polaroid:nth-child(18) { transform: rotate(2.6deg); }
+.polaroid:nth-child(19) { transform: rotate(-1.8deg); }
 
 /* --- Unsent Letters Section --- */
 .envelope {
