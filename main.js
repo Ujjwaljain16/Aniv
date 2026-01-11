@@ -256,6 +256,44 @@ function setupArrival() {
     });
 }
 
+function setupExperience() {
+  const bg = document.getElementById('bg-layer');
+  const grain = document.getElementById('grain-overlay');
+  
+  setTimeout(() => {
+    bg.style.filter = 'blur(0px)';
+    grain.style.opacity = '0.05';
+  }, 1500);
+  
+  console.log('Experience Ready (Locked).');
+}
+
+// Detect bright background and adjust text color
+function detectBrightBackground() {
+  const bgLayer = document.getElementById('bg-layer');
+  if (!bgLayer) return;
+  
+  // Check background position from animation
+  setInterval(() => {
+    const computedStyle = window.getComputedStyle(bgLayer);
+    const bgPosition = computedStyle.backgroundPosition;
+    
+    // When background-position is near 100% (pink dominant), add bright-bg class
+    const positionPercent = parseFloat(bgPosition);
+    
+    if (positionPercent > 70 || bgPosition.includes('100%')) {
+      document.body.classList.add('bright-bg');
+    } else {
+      document.body.classList.remove('bright-bg');
+    }
+  }, 1000); // Check every second
+}
+
+// Initialize
+window.addEventListener('DOMContentLoaded', () => {
+  setupExperience();
+  detectBrightBackground();
+});
 function setupPauseRoom() {
     const btn = document.getElementById('btn-okay');
     const toggle = document.getElementById('sound-toggle');
