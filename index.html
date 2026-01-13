@@ -137,7 +137,7 @@
             toh woh pal bhi<br>
             sapne se kam nahi tha.<br><br>
             Us moment mujhe smjh aaya<br>
-            tumse milna time ke baare mein nahi tha.<br>
+            tere se milna time ke baare mein tha hi nhi.<br>
             It was about<br>
             how real it felt.
         </p>
@@ -163,8 +163,7 @@
                  <span class="step-title">1.Listening more.</span>
                  <p class="step-content">
 Maine sikha ki hrr baar bolna zaruri nhi hota
-Kbhi kabhi bss sunna hi kaafi hota hai Pihuuu
-Without fixing. Without rushing</p>
+Kbhi kabhi bss sunna hi kaafi hota hai Pihuuu</p>
              </div>
 
              <!-- Step 2 -->
@@ -315,17 +314,17 @@ Even when it was uncertain.</p>
       <!-- Screen 7: Gratitude -->
       <section id="ref-gratitude" class="section">
          <!-- Title -->
-         <p class="gratitude-title serif-text" style="font-size: 1.2rem; opacity: 0.5; letter-spacing: 0.1em; margin-bottom: 3rem;">
+         <p class="gratitude-title serif-text" style="display: block; font-size: 1.6rem; opacity: 1; letter-spacing: 0.1em; margin-bottom: 3rem; margin-top: 4rem; padding-top: 2rem; text-align: center; color: rgba(255, 255, 255, 0.9);">
              things i noticed
          </p>
          
          <!-- List of quiet things -->
          <div class="gratitude-list">
              <p class="gratitude-item serif-text" data-item="1">— the way you stay, even when its hard</p>
-             <p class="gratitude-item serif-text" data-item="2">— aise waise humesha reply krna chahe late bhi kre krta toh hai hehe</p>
+             <p class="gratitude-item serif-text" data-item="2">— tu humesha anyhow give yr best to make me feel loved and prioritized </p>
              <p class="gratitude-item serif-text" data-item="3">— tera mujhpr bharosa yaar iss level ka uff</p>
-             <p class="gratitude-item serif-text" data-item="4">— duur ho ya pass hai tu meri hii yeh baat hrr baar mujhe btana</p>
-             <p class="gratitude-item serif-text" data-item="5">— humesha khud se aur sbse jayda dena mere ko aapne ehsiyat se jayda pihuuu</p>
+             <p class="gratitude-item serif-text" data-item="4">— duur ho ya pass tu meri hii yeh baat hrr baar mujhe btana</p>
+             <p class="gratitude-item serif-text" data-item="5">— humesha khud se aur sbse jayda  mere ko aapni ehsiyat se jayda dena pihuuu</p>
          </div>
          
          <!-- Final thank you -->
@@ -559,45 +558,62 @@ Even when it was uncertain.</p>
 
       <!-- Section: Distance Map (BLR - NGP) -->
       <section id="ref-map" class="section" style="display: block; overflow-x: auto; overflow-y: hidden; white-space: nowrap; padding: 0 40px; -webkit-overflow-scrolling: touch;">
-          <div style="display: inline-flex; align-items: center; height: 100%; min-width: 200vw; gap: 40px; position: relative;">
-              <!-- Line -->
-              <div style="position: absolute; left: 60px; right: 260px; top: 50%; height: 1px; background: rgba(255,255,255,0.2); z-index: 0;"></div>
+          <div style="display: inline-flex; align-items: center; height: 100%; min-width: 250vw; gap: 40px; position: relative;">
+              <!-- Line Container (for drawing animation) -->
+              <div class="map-line-container">
+                  <div class="map-line"></div>
+              </div>
               
               <!-- Start: BLR -->
-              <div style="z-index: 1; text-align: center; margin-right: 15vw;">
+              <div data-reveal style="z-index: 1; text-align: center; margin-right: 15vw;">
                   <div class="map-dot"></div>
                   <div class="map-label">BLR</div>
               </div>
 
-              <!-- Words along path -->
-              <div class="map-word" style="margin-right: 15vw;">Trust</div>
-              <div class="map-word" style="margin-right: 15vw;">Patience</div>
+              <!-- PHASE 1: FOUNDATION -->
+              <div data-reveal class="map-word map-word-foundation" style="margin-right: 15vw;">Trust</div>
               
-              <!-- The Moon (26 Jan 2025) -->
-              <div style="z-index: 2; text-align: center; margin-right: 15vw;">
-                  <!-- Waning Crescent Visual approx -->
+              <!-- THE MOON ANCHOR (26 Jan 2025) - The Confession -->
+              <div data-reveal id="map-moon" style="z-index: 2; text-align: center; margin-right: 15vw;">
+                  <!-- Waning Crescent Visual -->
                   <div style="width: 20px; height: 20px; border-radius: 50%; box-shadow: inset -4px 0 0 2px #fff; transform: rotate(-15deg); margin: 0 auto;"></div>
-                  <div class="map-label" style="margin-top: 10px; font-size: 0.7rem; opacity: 0.6;">26.01.25</div>
+                  <div id="moon-date" class="map-label" style="margin-top: 10px; font-size: 0.7rem; opacity: 0; transition: opacity 1s ease;">26.01.25</div>
               </div>
               
-              <div class="map-word" style="margin-right: 15vw;">Missing</div>
-              <div class="map-word" style="margin-right: 15vw;">Choosing again</div>
+              <!-- PHASE 2: REALITY HITS (after confession) -->
+              <div data-reveal class="map-word map-word-hard" style="margin-right: 12vw;">Doubt</div>
+              <div data-reveal class="map-word map-word-hard map-word-clustered">Overthinking</div>
+              <div data-reveal class="map-word map-word-hard map-word-clustered">Missing</div>
+              
+              <!-- PHASE 3: HARD PART -->
+              <div data-reveal class="map-word map-word-hard" style="margin-right: 12vw;">Frustration</div>
+              <div data-reveal class="map-word map-word-hard" style="margin-right: 15vw;">Tears</div>
+              
+              <!-- PHASE 4: REPAIR -->
+              <div data-reveal class="map-word map-word-repair" style="margin-right: 15vw;">Reassurance</div>
+              <div data-reveal class="map-word map-word-repair" style="margin-right: 15vw;">Understanding</div>
+              
+              <!-- PHASE 5: MATURITY -->
+              <div data-reveal class="map-word map-word-mature" style="margin-right: 15vw;">Patience</div>
+              <div data-reveal class="map-word map-word-mature" style="margin-right: 15vw;">Choosing again</div>
 
               <!-- End: NGP -->
-              <div style="z-index: 1; text-align: center; margin-right: 10vw;">
+              <div data-reveal style="z-index: 1; text-align: center; margin-right: 10vw;">
                   <div class="map-dot"></div>
                   <div class="map-label">NGP</div>
               </div>
               
               <!-- Ending Text -->
-              <div style="display: inline-block; vertical-align: middle; white-space: normal; width: 300px; text-align: center;">
+              <div data-reveal style="display: inline-block; vertical-align: middle; white-space: normal; width: 300px; text-align: center;">
                   <p class="serif-text" style="font-size: 1.4rem;">Distance exists on maps.<br>Not in effort.</p>
+                  <p class="small-text" style="margin-top: 1.5rem; opacity: 0.3; font-size: 0.65rem; letter-spacing: 0.15em;">Not everything was easy.<br>But everything was honest.</p>
                   <div style="height: 2rem;"></div>
-                  <button id="btn-continue-hold" class="btn-come-in" style="margin: 0 auto; display: block; opacity: 1; animation: none;">Continue</button>
+                  <button id="btn-continue-hold" class="btn-come-in" style="margin: 0 auto; display: block; opacity: 1; animation: none;">Go on</button>
               </div>
           </div>
-              </div>
-          </div>
+          
+          <!-- Scroll Hint -->
+          <div class="scroll-hint">← slowly →</div>
       </section>
 
       <!-- Section: The Sky We Share (Live) -->
@@ -617,8 +633,17 @@ Even when it was uncertain.</p>
 
       <!-- Section: How I Hold You (Linear 1) -->
       <section id="ref-hold-1" class="section">
+        <!-- Title -->
+        <p class="serif-text" style="font-size: 1.6rem; opacity: 0.8; letter-spacing: 0.1em; margin-bottom: 3rem; margin-top: 4rem; text-align: center; color: rgba(255, 255, 255, 0.9);">
+          How I Hold You
+        </p>
+        
         <div style="max-width: 500px; margin: 0 auto; position: relative;">
-          <p class="serif-text" id="hold-text-1" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">I protect your peace.</p>
+          <p class="serif-text" id="hold-text-1" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">I
+I hold you by paying attention
+to your silence
+jis trh tera mood shift hota hai before your words do,
+aur tb jb when you need me pr phir bhi bolega nhi hainaa </p>
           
           <!-- Translucent veil overlay (only over text) -->
           <div id="veil-1" onclick="revealHold(1, event)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; transition: transform 2.5s ease, opacity 2.5s ease; display: flex; align-items: center; justify-content: center;">
@@ -630,7 +655,10 @@ Even when it was uncertain.</p>
       <!-- Section: How I Hold You (Linear 2) -->
       <section id="ref-hold-2" class="section">
         <div style="max-width: 500px; margin: 0 auto; position: relative;">
-          <p class="serif-text" id="hold-text-2" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">I don't rush you when you're overwhelmed.</p>
+          <p class="serif-text" id="hold-text-2" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">I hold you in my texts
+            in "tune kuch khaya ?"
+            in the reminders you never asked for
+            </p>
           
           <!-- Translucent veil overlay (only over text) -->
           <div id="veil-2" onclick="revealHold(2, event)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; transition: transform 2.5s ease, opacity 2.5s ease; display: flex; align-items: center; justify-content: center;">
@@ -638,6 +666,23 @@ Even when it was uncertain.</p>
           </div>
         </div>
       </section>
+
+      <!-- Section: How I Hold You (Linear 3) -->
+      <section id="ref-hold-3" class="section">
+        <div style="max-width: 500px; margin: 0 auto; position: relative;">
+          <p class="serif-text" id="hold-text-3" style="filter: blur(8px); opacity: 0.4; transition: all 1s ease; font-size: 1.3rem; padding: 40px;">What stays isn’t intensity.
+It’s rhythm.
+A pattern of choosing each other
+in ordinary ways
+on ordinary days</p>
+          
+          <!-- Translucent veil overlay (only over text) -->
+          <div id="veil-3" onclick="revealHold(3, event)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; transition: transform 2.5s ease, opacity 2.5s ease; display: flex; align-items: center; justify-content: center;">
+            <p class="small-text" style="color: rgba(0,0,0,0.6); opacity: 1; letter-spacing: 0.2em; text-shadow: 0 1px 3px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);">TAP TO REVEAL</p>
+          </div>
+        </div>
+      </section>
+
 
 
       <!-- Section: Poetry (Envelope) -->
@@ -707,7 +752,7 @@ Tumhare bina yeh jeevan adhoora sa tum ho toh yahi mera chaaron dhaam...</p>
                   <div class="envelope-flap"></div>
                   <div class="envelope-body"></div>
                   <div class="envelope-content">
-                      <p class="handwritten" style="font-size: 1.1rem; line-height: 1.8; white-space: pre-line;">Tere bina yeh zindagi adhuri si lagti hai,
+                      <p class="handwritten" style="font-size: 1.1rem; line-height: 1.8; white-space: pre-line;">
 Mujhe milna hai tumse uss jahaan mein priye,
 Jahaan bichhadne ka riwaaz hi na hoo..
 Wahan hrr saans tumse bhari ho
@@ -805,14 +850,62 @@ Main khud ko bhi sirf tujhme paa liya hai...!!
 
 
       <!-- Section: For a Future Us -->
-      <section id="ref-future" class="section aged-paper">
-          <div style="max-width: 500px; text-align: left; padding: 20px;">
-              <p class="serif-text" style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.6;">For a future us</p>
-              <p class="serif-text" style="font-size: 1.1rem; line-height: 1.8;">
-                  I’m not writing this to promise you forever. Forever is a heavy word, and we are traveling light. 
-                  I’m writing this to tell you that today, in this quiet moment, I am sure. 
-                  I don't know what cities we'll live in, or who we'll be when we get there. 
-                  But I hope we keep looking at each other like this. Like we know something the rest of the world doesn't.
+      <section id="ref-future" class="section aged-paper future-section">
+          <div class="future-wrapper">
+            
+            <p class="future-label">For a future us</p>
+
+            <div class="future-divider"></div>
+
+            <p class="future-text">
+            Future us hmmm tbh i too dont know what is it kyuki being with you pihuuu i realised things situations phases changes very fast and stays for a time we have never thought
+            But ig we can make it till FOREVER na pihuuu by learning as we go and changing as we need to
+            I shamelessly want to hold you to a future neither of us has lived yet ab koi aur option hi nhi hai rehna hi pdega smjhaa
+            Mtlb dekhna yaaraa how we started and where are we now sb kuch ek delulu sa hai na and this delulu is real jaan 
+            Kaafi kuch bdla hai hum bdle hai tarike bdle hai but pyaar nhi bdla yaar tere liye 
+            Haa ab subh subh baat nhi hoti 
+            late night tk baaat nhi hoti
+            Saath songs nhi sun paate but still in this incompleteness na yaar there is a sense of completeness a feel of not giving up 
+            Staying together is the only way to make it till FOREVER
+            late replies still feels close
+            </p>
+
+            <p class="future-text">
+            Hum bhi yaaar kahi na kahi shyd seekh gye hai rukna teharna smjhna 
+            Idk what versions of ourselves we'll become 
+            Life bdi weird tarike se planning krti hai aur pyaar usse jayda ajeeb tarike se bdhta hai totally different than we expect
+            But still mein humesha yehi chahunga ki we both keep choosing each other the way we do now
+            kisi habit ke liye nhi yaar
+            naahi kisi fear ke liye
+            but out of understanding
+            I just hope ki hum thode se patient rahe when one of us is tired
+            I just hope ki hum sune smjhe ek dusre ko even when it’s easier to assume
+            I just hope we keep finding our way back to softness even after hard days
+            </p>
+
+            <p class="future-text">
+            Mujhe sirf itna chahiye ki jb bhi aisa time aaye ki the outside world feels too loud 
+            hume yaad rahe how it feels to be quiet together
+            Jab bhi koi tough time aaye na yaar things get uncertain and messy i hope tb hum ek dusre ke best version yaad rakhe    
+            the one that didn’t need guarantees to feel real
+            </p>
+
+            <p class="future-text">
+            Mujhe koi perfect future nhi chahiye
+            Most important is present i want a present jisme koi rush na ho 
+            Jisme hum chote chote moments ko lightly naa lee 
+            A love that keeps choosing presence over promises
+            </p>
+            <p class="future-text emphasis">
+            So if you ever read this again in some other time i hope you smile
+Not because everything turned out exactly as planned
+but because we were honest, gentle, and brave enough
+to grow without holding too tightly
+
+This is for a future us
+Not because it’s promised
+But because it’s possible
+and because we’re taking care of it one day at a time
               </p>
           </div>
       </section>
