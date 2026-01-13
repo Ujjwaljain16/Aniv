@@ -1,4 +1,5 @@
 import './style.css'
+import { initDistanceMap, cleanupDistanceMap } from './distance-map.js'
 
 // Configuration
 const CONFIG = {
@@ -23,6 +24,7 @@ const flow = [
   'ref-sky',
   'ref-hold-1',
   'ref-hold-2',
+  'ref-hold-3',
   'ref-letters',
   'ref-future',
   'ref-private',
@@ -591,4 +593,14 @@ document.body.addEventListener('contextmenu', (e) => {
     console.log('Navigating forward');
     // Right click = forward
     advance(1);
+});
+
+// Initialize Distance Map when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Distance Map interactions
+    const mapSection = document.getElementById('ref-map');
+    if (mapSection) {
+        initDistanceMap();
+        console.log('✨ Distance Map initialized');
+    }
 });
