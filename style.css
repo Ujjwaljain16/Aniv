@@ -866,3 +866,196 @@ body.blackout {
     line-height: 1.4;
     margin: 0;
 }
+/* --- Distance Map Enhancements --- */
+
+/* Progressive Reveal Animation */
+.map-element-hidden {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.map-element-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Line Drawing Animation */
+.map-line-container {
+  position: absolute;
+  left: 60px;
+  right: 260px;
+  top: 50%;
+  height: 1px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.map-line {
+  width: 0%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  transition: width 0.3s ease-out;
+}
+
+/* Moon Pulse (once only) */
+@keyframes moon-pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: drop-shadow(0 0 0px rgba(255,255,255,0));
+  }
+  50% { 
+    transform: scale(1.15); 
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
+  }
+}
+
+.moon-glow {
+  animation: moon-pulse 1.5s ease-in-out 1;
+}
+
+/* Word Hierarchy - Emotional Journey */
+.map-word {
+  transition: opacity 0.8s ease, transform 0.8s ease, color 0.8s ease, font-size 0.8s ease;
+}
+
+/* Foundation words (Trust) - normal */
+.map-word-foundation {
+  opacity: 0.7;
+}
+
+/* Hard words (Doubt, Overthinking, Missing, Frustration, Tears) */
+.map-word-hard {
+  opacity: 0.5;
+  font-size: 0.85em;
+  color: rgba(200, 200, 220, 0.8);
+}
+
+/* Repair words (Reassurance, Understanding) - warmer, brighter */
+.map-word-repair {
+  opacity: 0.8;
+  color: rgba(255, 220, 200, 0.9);
+}
+
+/* Mature words (Patience, Choosing again) - clearest */
+.map-word-mature {
+  opacity: 1;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Closer spacing for "reality hits" phase */
+.map-word-clustered {
+  margin-right: 10vw !important;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  opacity: 0.25;
+  letter-spacing: 0.3em;
+  font-family: var(--font-serif);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+}
+
+/* --- For a Future Us Section --- */
+
+.future-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  scroll-padding-top: 0;
+}
+
+.future-wrapper {
+  max-width: 600px;
+  width: 100%;
+  padding: 80px 32px 80px 32px;
+  text-align: left;
+  animation: fadeUp 1.2s ease forwards;
+  margin-top: 0;
+}
+
+.future-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  opacity: 0.55;
+  margin-bottom: 16px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.future-divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(0,0,0,0.25);
+  margin-bottom: 40px;
+}
+
+.future-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  margin-bottom: 28px;
+  opacity: 0.85;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.future-text.emphasis {
+  opacity: 1;
+  font-size: 1.08rem;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Subtle entrance animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced aged paper warmth */
+.aged-paper {
+  background: radial-gradient(
+    ellipse at top,
+    #f7f2e9 0%,
+    #f2eadf 100%
+  );
+}
+
+/* Mobile-first tweak */
+@media (max-width: 480px) {
+  .future-text {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  
+  .future-wrapper {
+    padding: 40px 24px;
+    max-width: 100%;
+  }
+  
+  .future-label {
+    font-size: 1.15rem;
+  }
+}
