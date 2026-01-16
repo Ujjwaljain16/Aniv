@@ -28,6 +28,7 @@ const flow = [
   'ref-letters',
   'ref-future',
   'ref-private',
+  'ref-private-2',
   'ref-final'
 ];
 
@@ -140,6 +141,7 @@ function setupNewSections() {
         { id: 'btn-continue-hold', target: 'next' },
         { id: 'btn-continue-future', target: 'next' },
         { id: 'btn-continue-final-page', target: 'next' },
+        { id: 'btn-continue-to-final', target: 'next' },
     ];
     
     mappings.forEach(m => {
@@ -152,13 +154,23 @@ function setupNewSections() {
         }
     });
 
-    // Private Gate Toggle
+    // Private Gate Toggle (First)
     const btnPrivate = document.getElementById('btn-enter-private');
     if (btnPrivate) {
         btnPrivate.addEventListener('click', (e) => {
              e.stopPropagation();
              document.getElementById('private-gate').style.display = 'none';
              document.getElementById('private-content').style.display = 'flex';
+        });
+    }
+
+    // Private Gate Toggle (Second)
+    const btnPrivate2 = document.getElementById('btn-enter-private-2');
+    if (btnPrivate2) {
+        btnPrivate2.addEventListener('click', (e) => {
+             e.stopPropagation();
+             document.getElementById('private-gate-2').style.display = 'none';
+             document.getElementById('private-content-2').style.display = 'flex';
         });
     }
 
@@ -466,7 +478,7 @@ function handleInteraction(e) {
   if (isInteracting) return;
 
   // Special Case: Chapters Section handles its own scrolling/interaction
-  if (['ref-chapters', 'ref-scrapbook', 'ref-map', 'ref-letters', 'ref-private', 'ref-final'].includes(flow[currentIndex])) return;
+  if (['ref-chapters', 'ref-scrapbook', 'ref-map', 'ref-letters', 'ref-private', 'ref-private-2', 'ref-final'].includes(flow[currentIndex])) return;
   
   // Ignore Inputs/Buttons
   if (['INPUT', 'BUTTON'].includes(e.target.tagName)) return;
