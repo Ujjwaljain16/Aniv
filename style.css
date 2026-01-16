@@ -155,8 +155,8 @@ body.arrival-mode {
 }
 
 #arrival .serif-text:nth-of-type(3) {
-    color: #dcd6d6; /* Subtle warmth/dimmer */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    color: #e2e2e2; /* Brighter to match other text */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 .serif-text {
