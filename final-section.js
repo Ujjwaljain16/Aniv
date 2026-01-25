@@ -116,7 +116,53 @@ function initFinalSection() {
                                     img.style.filter = 'grayscale(100%)';
                                 }
                                 
-                                console.log('🖼️ Fullscreen B&W overlay complete');
+                                // --- NEW SEQUENCE STARTS HERE ---
+                                // 6. Pause for 2 seconds, then zoom in slowly
+                                setTimeout(() => {
+                                    console.log('Step 8: Zooming starts');
+                                    
+                                    // Start with just zoom (very slow)
+                                    if (img) {
+                                        img.style.transition = 'transform 15s ease-out'; // Long zoom duration
+                                        img.style.transform = 'scale(1.3)'; // Zoom in
+                                    }
+
+                                    // 7. Wait 4 seconds, THEN start fading out slowly (while zoom continues)
+                                    setTimeout(() => {
+                                         console.log('Step 9: Fading out image slowly');
+                                         if (img) {
+                                            // Update transition to include opacity
+                                            img.style.transition = 'transform 15s ease-out, opacity 5s ease'; 
+                                            img.style.opacity = '0';
+                                         }
+                                         
+                                         // Fade container too
+                                         imageContainer.style.transition = 'opacity 5s ease';
+                                         imageContainer.style.opacity = '0';
+
+                                         // 8. Show the final black screen text after fade completes
+                                         setTimeout(() => {
+                                            console.log('Step 10: Showing really final message');
+                                            const reallyFinalMsg = document.getElementById('really-final-message');
+                                            if (reallyFinalMsg) {
+                                                reallyFinalMsg.style.display = 'flex';
+                                                reallyFinalMsg.style.pointerEvents = 'auto';
+                                                // Force reflow
+                                                reallyFinalMsg.offsetHeight;
+                                                reallyFinalMsg.style.opacity = '1';
+                                                
+                                                // 9. Final Redirect/Reload after reading
+                                                setTimeout(() => {
+                                                    console.log('👋 sequence complete, reloading');
+                                                    location.reload();
+                                                }, 10000); // Wait 10s for reading
+                                            }
+                                         }, 5000); // 5s fade duration
+
+                                    }, 4000); // Wait 4s before starting fade
+
+                                }, 2000); // 2s pause after fullscreen
+
                             }, 500);
                         }, 4000); // Wait 4s after heart starts pulsing
                     }

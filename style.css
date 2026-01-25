@@ -144,19 +144,17 @@ body.arrival-mode {
 }
 
 /* Micro-hierarchy for Arrival Text */
-#arrival .serif-text:nth-of-type(1) {
-    color: #ffffff;
-    text-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+/* Micro-hierarchy for Arrival Text - Simplified for visibility */
+#arrival .serif-text {
+    color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
-#arrival .serif-text:nth-of-type(2) {
-    color: #e2e2e2;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-}
-
-#arrival .serif-text:nth-of-type(3) {
-    color: #e2e2e2; /* Brighter to match other text */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+/* Optional: slight dim for secondary lines if needed, but prioritize readability first */
+#arrival .serif-text:nth-of-type(3),
+#arrival .serif-text:nth-of-type(5) {
+    color: #f0f0f0 !important;
+    opacity: 0.95;
 }
 
 .serif-text {
